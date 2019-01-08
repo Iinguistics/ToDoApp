@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <img src="./assets/logo.png" class="logo">
+    <img src="./assets/todoimage.jpg" class="logo">
     <todo-list></todo-list>
     <router-view/>
   </div>
@@ -33,5 +33,11 @@ export default {
 .container{
   max-width: 650px;
   margin: auto;
+}
+
+.logo{
+  max-width: 325px;
+  max-height: 300px;
+  border-radius: 15%;
 }
 </style>
