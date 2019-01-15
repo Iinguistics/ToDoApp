@@ -1,19 +1,51 @@
 <template>
   <div id="app" class="container">
     <img src="./assets/todoimage.jpg" class="logo">
-    <todo-list></todo-list>
+       <Header />
+       <AddTodo />
+       <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
     <router-view/>
   </div>
 </template>
 
 <script>
-import TodoList from './components/TodoList'
-
+import Header from './components/layout/Header';
+import Todos from './components/Todos';
+import AddTodo from './components/AddTodo';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    TodoList
+    Header,
+     Todos,
+     AddTodo,
+  },
+  data(){
+    return {
+      todos: [
+        {
+          id: 1,
+          title: "Todo One",
+          completed: false
+        },
+        {
+          id: 2,
+          title: "Todo Two",
+          completed: true
+        },
+        {
+          id: 3,
+          title: "Todo Three",
+          completed: false
+        },
+      ]
+    }
+  },
+  methods: {
+    // once X is clicked removes todo from page...filter(loops through array & filters back what we want)
+    deleteTodo(id){
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    }
   }
 }
 </script>
@@ -21,7 +53,7 @@ export default {
 <style>
 
 #app {
-   font-family: 'Oxygen', sans-serif;
+  font-family: 'Oxygen', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -40,4 +72,7 @@ export default {
   max-height: 300px;
   border-radius: 15%;
 }
+
+
 </style>
+
