@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container">   
     <img src="./assets/todoimage.jpg" class="logo">
        <Header />
-       <AddTodo />
+       <AddTodo v-on:add-todo="addTodo" />
        <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
     <router-view/>
   </div>
@@ -12,6 +12,8 @@
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
+import firebase from './firebase';
+
 
 export default {
   name: 'app',
@@ -45,6 +47,9 @@ export default {
     // once X is clicked removes todo from page...filter(loops through array & filters back what we want)
     deleteTodo(id){
       this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+    addTodo(newTodo){
+      this.todos = [...this.todos, newTodo];
     }
   }
 }
@@ -63,16 +68,15 @@ export default {
 }
 
 .container{
-  max-width: 650px;
+ /* max-width: 650px; */
   margin: auto;
 }
 
 .logo{
-  max-width: 325px;
-  max-height: 300px;
-  border-radius: 15%;
+  max-width: 300px;
+  padding-bottom: 15px;
+  border-radius: 20%;
 }
-
 
 </style>
 
